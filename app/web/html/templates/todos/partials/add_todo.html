@@ -1,0 +1,33 @@
+<li
+  class="group flex justify-between items-center gap-6 hover:bg-teal-50 py-6 px-4 text-lg"
+  hx-target-302="html"
+  hx-target-401="html"
+>
+  <button
+    hx-post="{{ url_for('html:add_todo') }}"
+    hx-include="next input"
+    hx-target="closest li"
+    hx-swap="beforebegin"
+    class="group/add cursor-pointer flex justify-center items-center"
+  >
+    <ion-icon
+      class="group-hover/add:hidden w-8 h-8"
+      name="add-circle-outline"
+    ></ion-icon
+    ><ion-icon
+      class="hidden group-hover/add:inline-block w-8 h-8 text-teal-600"
+      name="add-circle"
+    ></ion-icon>
+  </button>
+  <input
+    name="title"
+    type="text"
+    hx-post="{{ url_for('html:add_todo') }}"
+    hx-trigger="keyup[keyCode==13]"
+    hx-include="this"
+    hx-target="closest li"
+    hx-swap="beforebegin"
+    class="grow px-3 py-1 rounded-md group-hover:ring-1 group-hover:ring-neutral-300 focus-visible:!ring-4 focus-visible:!ring-teal-300 border focus-visible:!border-transparent"
+  />
+  <span class="w-6 h-8"></span>
+</li>

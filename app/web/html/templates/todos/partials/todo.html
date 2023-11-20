@@ -1,0 +1,50 @@
+{% if todo %}
+  <li
+    id="todo-{{ todo.id }}"
+    class=" hover:bg-teal-50 py-6 px-4 text-lg {% if todo.completed %}line-through{% endif %}"
+  >
+    <form
+      class="group flex justify-between items-center gap-6"
+      hx-target-302="html"
+      hx-target-401="html"
+    >
+      <input name="todo_id" type="hidden" value="{{ todo.id }}" />
+      <input
+        type="checkbox"
+        name="completed"
+        class="cursor-pointer w-5 h-5 text-teal-600 !ring-transparent"
+        {% if todo.completed %}
+          checked
+        {% endif %}
+        hx-patch="{{ url_for('html:update_todo', todo_id=todo.id) }}"
+        hx-target="closest li"
+        hx-swap="outerHTML"
+      />
+      <input
+        type="text"
+        name="title"
+        value="{{ todo.title }}"
+        class="grow px-3 py-1 rounded-md group-hover:ring-1 group-hover:ring-neutral-300 focus-visible:!ring-4 focus-visible:!ring-teal-300 border !border-transparent"
+        hx-patch="{{ url_for('html:update_todo', todo_id=todo.id) }}"
+        hx-target="closest li"
+        hx-swap="outerHTML"
+      />
+      <button
+        hx-delete="{{ url_for('html:delete_todo', todo_id=todo.id) }}"
+        hx-target="closest li"
+        hx-swap="delete"
+        type="button"
+        class="group/close cursor-pointer"
+      >
+        <ion-icon
+          class="group-hover/close:hidden w-8 h-8"
+          name="close-circle-outline"
+        ></ion-icon
+        ><ion-icon
+          class="hidden group-hover/close:inline-block w-8 h-8 text-teal-600"
+          name="close-circle"
+        ></ion-icon>
+      </button>
+    </form>
+  </li>
+{% endif %}

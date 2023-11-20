@@ -1,0 +1,15 @@
+{% extends "shared/base.html" %}
+{% block content %}
+  <main>
+    <section class="section-container mb-24">
+      <h1 class="text-4xl mt-10 mb-10 font-bold">Todo App</h1>
+      <p class="mb-8 text-2xl font-semibold">List your todos with this app.</p>
+      <ul class="flex flex-col mb-6">
+        {% for todo in todos %}
+          {{ render_partial('todos/partials/todo.html', request=request, todo=todo) }}
+        {% endfor %}
+        {{ render_partial('todos/partials/add_todo.html', request=request) }}
+      </ul>
+    </section>
+  </main>
+{% endblock content %}

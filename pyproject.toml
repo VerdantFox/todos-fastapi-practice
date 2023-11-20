@@ -1,0 +1,10 @@
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+
+implicit_optional = true
+# disallow_untyped_defs = true
+
+[tool.ruff]
+unfixable = ["F401"]
